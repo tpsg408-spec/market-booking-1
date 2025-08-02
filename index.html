@@ -11,113 +11,24 @@
   <div id="lockGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
 
   <script>
-  const locks = [
-    {
-      id: 1,
-      name: "ล็อก A1",
-      image: "https://source.unsplash.com/400x300/?market,stall",
-      price: 250,
-      status: "available",
-    },
-    {
-      id: 2,
-      name: "ล็อก B2",
-      image: "https://source.unsplash.com/400x300/?booth,shop",
-      price: 300,
-      status: "available",
-    },
-    {
-      id: 3,
-      name: "ล็อก C3",
-      image: "https://source.unsplash.com/400x300/?bazaar,store",
-      price: 200,
-      status: "available",
-    },
-    {
-      id: 4,
-      name: "ล็อก D4",
-      image: "https://source.unsplash.com/400x300/?marketplace",
-      price: 220,
-      status: "available",
-    },
-    {
-      id: 5,
-      name: "ล็อก E5",
-      image: "https://source.unsplash.com/400x300/?vendor,thai",
-      price: 270,
-      status: "available",
-    },
-    {
-      id: 6,
-      name: "ล็อก F6",
-      image: "https://source.unsplash.com/400x300/?food,market",
-      price: 250,
-      status: "available",
-    },
-    {
-      id: 7,
-      name: "ล็อก G7",
-      image: "https://source.unsplash.com/400x300/?handmade,goods",
-      price: 230,
-      status: "available",
-    },
-    {
-      id: 8,
-      name: "ล็อก H8",
-      image: "https://source.unsplash.com/400x300/?fruit,stand",
-      price: 240,
-      status: "reserved",
-    },
-    {
-      id: 9,
-      name: "ล็อก I9",
-      image: "https://source.unsplash.com/400x300/?clothes,market",
-      price: 210,
-      status: "available",
-    },
-    {
-      id: 10,
-      name: "ล็อก J10",
-      image: "https://source.unsplash.com/400x300/?street,vendor",
-      price: 260,
-      status: "available",
-    },
-    {
-  id: 11,
-  name: "ล็อก K11",
-  image: "https://source.unsplash.com/400x300/?snack,market",
-  price: 230,
-  status: "available",
-    },
-    {
-  id: 12,
-  name: "ล็อก L12",
-  image: "https://source.unsplash.com/400x300/?drink,vendor",
-  price: 220,
-  status: "available",
-    },
-    {
-  id: 13,
-  name: "ล็อก M13",
-  image: "https://source.unsplash.com/400x300/?craft,booth",
-  price: 240,
-  status: "available",
-    },
-    {
-  id: 14,
-  name: "ล็อก N14",
-  image: "https://source.unsplash.com/400x300/?accessory,shop",
-  price: 250,
-  status: "available",
-    },
-    {
-  id: 15,
-  name: "ล็อก O15",
-  image: "https://source.unsplash.com/400x300/?book,market",
-  price: 260,
-  status: "available",
-   },
-  ];
+    const locks = [
+      { id: 1, name: "ล็อก A1", image: "https://source.unsplash.com/400x300/?market,stall", price: 250, status: "available" },
+      { id: 2, name: "ล็อก B2", image: "https://source.unsplash.com/400x300/?booth,shop", price: 300, status: "available" },
+      { id: 3, name: "ล็อก C3", image: "https://source.unsplash.com/400x300/?bazaar,store", price: 200, status: "available" },
+      { id: 4, name: "ล็อก D4", image: "https://source.unsplash.com/400x300/?marketplace", price: 220, status: "available" },
+      { id: 5, name: "ล็อก E5", image: "https://source.unsplash.com/400x300/?vendor,thai", price: 270, status: "available" },
+      { id: 6, name: "ล็อก F6", image: "https://source.unsplash.com/400x300/?food,market", price: 250, status: "available" },
+      { id: 7, name: "ล็อก G7", image: "https://source.unsplash.com/400x300/?handmade,goods", price: 230, status: "available" },
+      { id: 8, name: "ล็อก H8", image: "https://source.unsplash.com/400x300/?fruit,stand", price: 240, status: "reserved" },
+      { id: 9, name: "ล็อก I9", image: "https://source.unsplash.com/400x300/?clothes,market", price: 210, status: "available" },
+      { id: 10, name: "ล็อก J10", image: "https://source.unsplash.com/400x300/?street,vendor", price: 260, status: "available" },
+      { id: 11, name: "ล็อก K11", image: "https://source.unsplash.com/400x300/?snack,market", price: 230, status: "available" },
+      { id: 12, name: "ล็อก L12", image: "https://source.unsplash.com/400x300/?drink,vendor", price: 220, status: "available" },
+      { id: 13, name: "ล็อก M13", image: "https://source.unsplash.com/400x300/?craft,booth", price: 240, status: "available" },
+      { id: 14, name: "ล็อก N14", image: "https://source.unsplash.com/400x300/?accessory,shop", price: 250, status: "available" },
+      { id: 15, name: "ล็อก O15", image: "https://source.unsplash.com/400x300/?book,market", price: 260, status: "available" },
+    ];
+
     function renderLocks() {
       const container = document.getElementById("lockGrid");
       container.innerHTML = "";
@@ -157,5 +68,3 @@
   </script>
 </body>
 </html>
-
-
