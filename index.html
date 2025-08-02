@@ -1,0 +1,125 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>ล็อกว่างในตลาด</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <h1 class="text-3xl font-bold text-center mb-8">ล็อกว่างในตลาด</h1>
+  <div id="lockGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+
+  <script>
+  const locks = [
+    {
+      id: 1,
+      name: "ล็อก A1",
+      image: "https://source.unsplash.com/400x300/?market,stall",
+      price: 250,
+      status: "available",
+    },
+    {
+      id: 2,
+      name: "ล็อก B2",
+      image: "https://source.unsplash.com/400x300/?booth,shop",
+      price: 300,
+      status: "available",
+    },
+    {
+      id: 3,
+      name: "ล็อก C3",
+      image: "https://source.unsplash.com/400x300/?bazaar,store",
+      price: 200,
+      status: "available",
+    },
+    {
+      id: 4,
+      name: "ล็อก D4",
+      image: "https://source.unsplash.com/400x300/?marketplace",
+      price: 220,
+      status: "available",
+    },
+    {
+      id: 5,
+      name: "ล็อก E5",
+      image: "https://source.unsplash.com/400x300/?vendor,thai",
+      price: 270,
+      status: "available",
+    },
+    {
+      id: 6,
+      name: "ล็อก F6",
+      image: "https://source.unsplash.com/400x300/?food,market",
+      price: 250,
+      status: "available",
+    },
+    {
+      id: 7,
+      name: "ล็อก G7",
+      image: "https://source.unsplash.com/400x300/?handmade,goods",
+      price: 230,
+      status: "available",
+    },
+    {
+      id: 8,
+      name: "ล็อก H8",
+      image: "https://source.unsplash.com/400x300/?fruit,stand",
+      price: 240,
+      status: "reserved",
+    },
+    {
+      id: 9,
+      name: "ล็อก I9",
+      image: "https://source.unsplash.com/400x300/?clothes,market",
+      price: 210,
+      status: "available",
+    },
+    {
+      id: 10,
+      name: "ล็อก J10",
+      image: "https://source.unsplash.com/400x300/?street,vendor",
+      price: 260,
+      status: "available",
+    },
+  ];
+
+    function renderLocks() {
+      const container = document.getElementById("lockGrid");
+      container.innerHTML = "";
+
+      locks.forEach((lock) => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-2xl shadow-md overflow-hidden";
+
+        const disabled = lock.status !== "available";
+        const reserveUrl = `reserve.html?id=${lock.id}&name=${encodeURIComponent(lock.name)}&price=${lock.price}`;
+
+        card.innerHTML = `
+          <img src="${lock.image}" alt="${lock.name}" class="w-full h-48 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-semibold">${lock.name}</h2>
+            <p class="text-gray-600">ราคา: ${lock.price} บาท/วัน</p>
+            <p class="mt-2 text-sm font-medium ${lock.status === "available" ? "text-green-600" : "text-red-500"}">
+              สถานะ: ${lock.status === "available" ? "ว่าง" : "ถูกจองแล้ว"}
+            </p>
+            <a href="${disabled ? '#' : reserveUrl}">
+              <button
+                ${disabled ? "disabled" : ""}
+                class="mt-4 w-full px-4 py-2 rounded-xl text-white font-bold ${
+                  disabled ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-600"
+                }"
+              >
+                ${disabled ? "ไม่สามารถจองได้" : "จองล็อกนี้"}
+              </button>
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    renderLocks();
+  </script>
+</body>
+</html>

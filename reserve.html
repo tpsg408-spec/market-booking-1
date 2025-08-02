@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>จองล็อก</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+    <h1 class="text-2xl font-bold mb-4">กรอกข้อมูลการจอง</h1>
+
+    <div id="lockInfo" class="mb-4 text-gray-700 font-medium"></div>
+
+    <form id="reserveForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-600">ชื่อผู้จอง</label>
+        <input type="text" name="name" required class="w-full p-2 rounded border" />
+      </div>
+      <div>
+        <label class="block text-gray-600">เบอร์โทร</label>
+        <input type="tel" name="phone" required class="w-full p-2 rounded border" />
+      </div>
+      <div>
+        <label class="block text-gray-600">ขายสินค้าอะไร</label>
+        <input type="text" name="product" required class="w-full p-2 rounded border" />
+      </div>
+
+      <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl">
+        ส่งข้อมูลการจอง
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbzDesbIHpOVsH_90jlULcWtFHK7vmFq0Lng4Ea5G1TK9WptemjPx3ShCkzDAUFk99A/exec"; 
+    const params = new URLSearchParams(window.location.search);
+    const lockId = params.get("id");
+    const lockName = params.get("name");
+    const price = params.get("price");
+
+    document.getElementById("lockInfo").innerText = `คุณกำลังจอง: ${lockName} ราคา ${price} บาท/วัน`;
+
+    document.getElementById("reserveForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      const data = {
+        id: lockId,
+        name: formData.get("name"),
+        phone: formData.get("phone"),
+        product: formData.get("product"),
+        lockName: lockName,
+        price: price,
+      };
+
+      try {
+        await fetch(API_URL, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        alert(`✅ ข้อมูลถูกส่งเรียบร้อยแล้ว\n\nชื่อ: ${data.name}\nเบอร์: ${data.phone}\nขาย: ${data.product}\n\nขอบคุณที่จองล็อก ${data.lockName}!`);
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("❌ เกิดข้อผิดพลาดในการส่งข้อมูล");
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
