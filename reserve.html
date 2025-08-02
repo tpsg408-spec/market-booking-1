@@ -25,15 +25,14 @@
         <input type="text" name="product" required class="w-full p-2 rounded border" />
       </div>
 
-      <button type="submit" id="submitBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl">
+      <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl">
         ส่งข้อมูลการจอง
       </button>
     </form>
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbx6ufG_WPE7AJ8bW_PvZznw_PwhNjX33x-sI5bMpzGIOhqX4XuWkWr2ik1x5OiraEEA/exec"; // 👈 เปลี่ยน URL ตรงนี้
-
+    const API_URL = "https://script.google.com/macros/s/AKfycbx77WUZQQCeaFoUvaeiqjH909UnVci4hjFLYQcp5Jf-9DyeteUF-XkD0_yaXgJbFwHX/exec"; 
     const params = new URLSearchParams(window.location.search);
     const lockId = params.get("id");
     const lockName = params.get("name");
@@ -44,9 +43,6 @@
     document.getElementById("reserveForm").addEventListener("submit", async function (e) {
       e.preventDefault();
       const formData = new FormData(this);
-      const submitBtn = document.getElementById("submitBtn");
-      submitBtn.disabled = true;
-      submitBtn.innerText = "กำลังส่ง...";
 
       const data = {
         id: lockId,
@@ -58,29 +54,19 @@
       };
 
       try {
-        const response = await fetch(API_URL, {
+        await fetch(API_URL, {
           method: "POST",
           body: JSON.stringify(data),
           headers: { "Content-Type": "application/json" },
         });
-        const result = await response.text();
-        console.log("ผลลัพธ์จาก GAS:", result);
 
-        if (result.toLowerCase().includes("success")) {
-          alert(`✅ ข้อมูลถูกส่งเรียบร้อยแล้ว\n\nชื่อ: ${data.name}\nเบอร์: ${data.phone}\nขาย: ${data.product}\n\nขอบคุณที่จองล็อก ${data.lockName}!`);
-          window.location.href = "index.html";
-        } else {
-          throw new Error(result);
-        }
+        alert(`✅ ข้อมูลถูกส่งเรียบร้อยแล้ว\n\nชื่อ: ${data.name}\nเบอร์: ${data.phone}\nขาย: ${data.product}\n\nทางเราจะติดต่อกลับไปภายใน 1-2 วัน 😊`);
+        window.location.href = "index.html";
       } catch (error) {
-        alert("❌ เกิดข้อผิดพลาดในการส่งข้อมูล\n\n" + error.message);
-        console.error("Error:", error);
-        submitBtn.disabled = false;
-        submitBtn.innerText = "ส่งข้อมูลการจอง";
+        alert("❌ เกิดข้อผิดพลาดในการส่งข้อมูล");
+        console.error(error);
       }
     });
   </script>
 </body>
 </html>
-
-
