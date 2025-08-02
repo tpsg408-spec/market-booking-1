@@ -32,7 +32,7 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbykv1AFHbRVPYBB7Qwk31_IO3aA3G05c_-35p_AHqzZKfHHmPtwYF2hzS1JdQ9STDcQ/exec"; // ใส่ URL ของคุณให้ถูก
+    const API_URL = "https://script.google.com/macros/s/###_REPLACE_WITH_YOUR_URL_###/exec"; // 👈 เปลี่ยน URL ตรงนี้
 
     const params = new URLSearchParams(window.location.search);
     const lockId = params.get("id");
@@ -64,7 +64,7 @@
           headers: { "Content-Type": "application/json" },
         });
         const result = await response.text();
-        console.log("ผลลัพธ์จาก Google Script:", result);
+        console.log("ผลลัพธ์จาก GAS:", result);
 
         if (result.toLowerCase().includes("success")) {
           alert(`✅ ข้อมูลถูกส่งเรียบร้อยแล้ว\n\nชื่อ: ${data.name}\nเบอร์: ${data.phone}\nขาย: ${data.product}\n\nขอบคุณที่จองล็อก ${data.lockName}!`);
@@ -82,6 +82,3 @@
   </script>
 </body>
 </html>
-
-
-
